@@ -1,0 +1,10 @@
+{%extends 'TransBaseBundle:Trans:index.html.twig'%}
+{%block title%} Добавление авто {%endblock%}
+
+{%block content%}
+    <form action="{{ path('trans_add_act')}}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+{%endblock%}

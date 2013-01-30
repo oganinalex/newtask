@@ -1,0 +1,9 @@
+# Trans/StoreBundle/Resources/config/validation.yml
+Trans\StoreBundle\Entity\CarType:
+    properties:
+        car_name:
+            - NotBlank: ~
+        car_number:
+            - NotBlank: ~
+        car_vincode:
+            - NotBlank: ~

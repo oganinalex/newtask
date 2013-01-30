@@ -1,0 +1,76 @@
+<?php
+// src/Trans/StoreBundle/Entity/TransportLog.php
+namespace Trans\StoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="TransportLog")
+ */
+class TransportLog
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $act_number;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $car_type;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $date;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $cargo_weight;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $cargo_type;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $type_transposition;
+    /**
+     * @ORM\Column(type="decimal", scale=2)
+     */
+    protected $price_by_km;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $dist;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $number_trips;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $price_by_one;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $place_loading;
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $place_discharg;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $edit_time;
+    
+}
+?>

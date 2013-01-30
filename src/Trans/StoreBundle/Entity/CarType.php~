@@ -1,0 +1,52 @@
+<?php
+// src/Trans/StoreBundle/Entity/CarType.php
+namespace Trans\StoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="CarType")
+ */
+class CarType
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $car_name;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $car_number;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $car_vincode;
+     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $driver_first_name;
+     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $driver_last_name;
+     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $location;
+     /**
+     * @ORM\Column(type="string", length=512)
+     */
+    protected $foto;
+}
+?>
+
