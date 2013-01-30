@@ -1,0 +1,16 @@
+parameters:
+  database_driver: pdo_mysql
+  database_host: 127.0.0.1
+  database_port: '3306'
+  database_name: transcontrol
+  database_user: root
+  database_password: vertrigo
+  mailer_transport: smtp
+  mailer_host: 127.0.0.1
+  mailer_user: null
+  mailer_password: null
+  locale: en
+  secret: fdaa76dce29e73094780b1a62163ed083e2e92bb
+  database_path: localhost
+  
+  

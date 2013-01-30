@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>{% block title %}My cool blog posts{% endblock %}</title>
+   
+    {% block stylesheets %}
+            <link href="{{ asset('css/bootstrap.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+  </head>
+  <body>
+      <div class='container'>
+     {% block menu %}
+          {% include 'AcmeHelloBundle:Default:menu_bar.html.twig'%}
+     {%endblock%}
+     {%block alert %}
+          {% include 'AcmeHelloBundle:Default:alert.html.twig'%}
+     {%endblock%}
+     {%block content %}
+          Контент страницы располагаеться здесь
+     {%endblock%} 
+     <footer>
+     {% block footer%}
+          © Copyright 1917 and many other interesting
+     {% endblock %} 
+     </footer>
+     </div>
+    {% block javascripts %}
+        <script src={{ asset('http://code.jquery.com/jquery-latest.js') }} type="text/javascript" ></script>
+        <script src={{ asset('js/bootstrap.min.js') }} type="text/javascript" ></script>
+    {% endblock %}
+  </body>
+</html>
+

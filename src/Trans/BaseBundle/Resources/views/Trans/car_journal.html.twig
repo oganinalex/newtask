@@ -1,0 +1,34 @@
+{%extends 'TransBaseBundle:Trans:index.html.twig'%}
+{%block title%} Список автомобилей {%endblock%}
+
+{%block content%}
+    <table class="table table-bordered table-striped table-hover">
+    <thead>    
+        <tr>
+            <td>№</td>
+            <td>Название авто</td>
+            <td>Номре Авто</td>
+            <td>VIN код</td>
+            <td>Имя водителя</td>
+            <td>Фамилие Водителя</td>
+            <td>Редактировать</td>
+            <td>Удалить</td>
+        </tr>
+    </thead>
+    </tbody>
+    {%for car in cars %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ car.CarName }}</td>
+            <td>{{ car.CarNumber }}</td>
+            <td>{{ car.Carvincode }}</td>
+            <td>{{ car.DriverFirstName }}&nbsp;</td>
+            <td>{{ car.DriverLastName }}&nbsp;</td>
+            <td><a href="{{ path('trans_edit_car', {'car_id': car.id} )}}">Редактировать</a></td>
+            <td><a href="{{ path('trans_delete_car', {'car_id': car.id} )}}">Удалить</a></td>
+        </tr>
+    {%endfor%}
+    </tbody>
+    </table>
+{%endblock%}
+

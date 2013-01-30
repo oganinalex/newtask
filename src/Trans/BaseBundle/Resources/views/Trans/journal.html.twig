@@ -1,0 +1,34 @@
+{%extends 'TransBaseBundle:Trans:index.html.twig'%}
+{%block title%} Список автомобилей {%endblock%}
+
+{%block content%}
+    <table class="table table-bordered table-striped table-hover">
+    <thead>    
+        <tr>
+            <td>№</td>
+            <td>Маршрут</td>
+            <td>Акт №</td>
+            <td>Дата</td>
+            <td>Тип поездки</td>
+            <td>Автомобиль</td> 
+            <td>Редактировать</td> 
+            <td>Удалить</td> 
+        </tr>
+    </thead>
+    </tbody>
+    {%for act in acts %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ act.PlaceLoading }} - {{ act.PlaceDischarg }}</td>
+            <td> АКТ № {{ act.ActNumber }} </td>
+            <td>{{ act.Date|date("m.d.Y") }}</td>
+            <td>{{ act.TypeShiping.TypeShiping }}&nbsp;</td>
+            <td>{{ act.CarType.CarName }}&nbsp;</td>
+            <td><a href="{{ path('trans_edit_act', {'act_id': act.id} )}}">Редактировать</a></td>
+            <td><a href="{{ path('trans_delete_act', {'act_id': act.id} )}}">Удалить</a></td>
+        </tr>
+    {%endfor%}
+    </tbody>
+    </table>
+{%endblock%}
+
