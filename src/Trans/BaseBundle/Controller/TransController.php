@@ -75,38 +75,21 @@ class TransController extends Controller
     }
     public function edit_actAction(Request $request, $act_id)
     {
-        $TransportLog = new TransportLog();
-        
-        
-        if($request->getMethod() == "POST")
+        //$TransportLog = new TransportLog();
+        $em = $this->getDoctrine()->getEntityManager();
+        $Trans = $em->getRepository('TransStoreBundle:TransportLog')->find($act_id);
+        if(!$Trans)
         {
-            // добавляем в базу
-            $form = $this->createForm(new TransportLogTask(), $TransportLog); 
+            throw $this->createNotFoundException('Ненайден акт под id '.$act_id);
+        }
+        $form = $this->createForm(new TransportLogTask(), $Trans); 
+        
+        if($request->getMethod() == "POST") // елси нажато Редактировать
+        {
+            // Изменение в базе            
             $form->bindRequest($request);
             if($form->isValid())
             {
-                //вносим запись в базу
-                
-                $translog = $form->getData();
-                //$translog->setEditTime(time());
-                $em = $this->getDoctrine()->getEntityManager();
-                $Trans = $em->getRepository('TransStoreBundle:TransportLog')->find($act_id);
-                if(!$Trans)
-                {
-                    throw $this->createNotFoundException('Ненайден акт под id '.$act_id);
-                }
-                $Trans->setEditTime(time());
-                $Trans->setActNumber($translog->getActNumber());
-                $Trans->setCarType($translog->getCarType());
-                $Trans->setDate($translog->getDate());
-                $Trans->setCargoWeight($translog->getCargoWeight());
-                $Trans->setCargoType($translog->getCargoType());
-                $Trans->setTypeShiping($translog->getTypeShiping());
-                $Trans->setPriceByKm($translog->getPriceByKm());
-                $Trans->setDist($translog->getDist());
-                $Trans->setPlaceLoading($translog->getPlaceLoading());
-                $Trans->setPlaceDischarg($translog->getPlaceDischarg());     
-                //
                 $em ->flush();
                 return $this->redirect($this->generateUrl('trans_base_homepage'));
             }else
@@ -114,16 +97,9 @@ class TransController extends Controller
                 $content = "Не валидны данные";
                 return $this->render('TransBaseBundle:Trans:index.html.twig', array('content' =>  $content));
             }
-        }else
+        }else // если просто загруженно
         {
-            // выводим в форму
-            $translog = $this->getDoctrine()
-                        ->getRepository('TransStoreBundle:TransportLog')
-                        ->find($act_id);
-        if (!$translog) {
-            throw $this->createNotFoundException('Акт под таким id не найден '.$car_id);
-        }         
-            $form = $this->createForm(new TransportLogTask(), $translog);     
+            // выводим форму с заполнеными данными
             return $this->render('TransBaseBundle:Trans:form_edit_act.html.twig', array('form' => $form->createView(), 'act_id'=>$act_id));
         }
     }
