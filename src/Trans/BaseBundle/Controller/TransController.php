@@ -106,13 +106,7 @@ class TransController extends Controller
         }else // если просто загруженно
         {
             // выводим форму с заполнеными данными
-            
-            //$translator=new Translator('ru_RU', new MessageSelector());
-
-            $t = $this->get('translator')->trans(
-                    'word'
-                 
-                );              //$transl->trans('word',array(),'messages','fr_BE');
+    
             return $this->render('TransBaseBundle:Trans:form_edit_act.html.twig', array('form' => $form->createView(), 'act_id'=>$act_id));
         }
     }
