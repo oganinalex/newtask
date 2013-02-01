@@ -4,8 +4,11 @@ namespace Trans\BaseBundle\Controller;
 
 use Trans\StoreBundle\Entity\TransportLog;
 use Trans\StoreBundle\Form\Type\TransportLogTask;
-//use Trans\TaskBundle\Entity\CarTypeTask;
+use Symfony\Component\Translation\Translator;
+use \Symfony\Component\Translation\MessageSelector;
+
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class TransController extends Controller
@@ -88,18 +91,28 @@ class TransController extends Controller
         {
             // Изменение в базе            
             $form->bindRequest($request);
+           
             if($form->isValid())
             {
                 $em ->flush();
                 return $this->redirect($this->generateUrl('trans_base_homepage'));
             }else
             {
-                $content = "Не валидны данные";
+             
+                $content = $this->get('translator')->trans('Field "№ act" must not contain text values');
+                
                 return $this->render('TransBaseBundle:Trans:index.html.twig', array('content' =>  $content));
             }
         }else // если просто загруженно
         {
             // выводим форму с заполнеными данными
+            
+            //$translator=new Translator('ru_RU', new MessageSelector());
+
+            $t = $this->get('translator')->trans(
+                    'word'
+                 
+                );              //$transl->trans('word',array(),'messages','fr_BE');
             return $this->render('TransBaseBundle:Trans:form_edit_act.html.twig', array('form' => $form->createView(), 'act_id'=>$act_id));
         }
     }

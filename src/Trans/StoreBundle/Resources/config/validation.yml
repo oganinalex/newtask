@@ -7,3 +7,20 @@ Trans\StoreBundle\Entity\CarType:
             - NotBlank: ~
         car_vincode:
             - NotBlank: ~
+            
+Trans\StoreBundle\Entity\TransportLog:
+    properties:
+       act_number:
+            - NotBlank: ~
+            - MinLength: 3
+            
+       cargo_type:
+            - NotBlank: ~
+            
+       type_shiping_id:
+           - NotBlank: ~
+           
+       price_by_km:
+            - Type: Decimal
+            
+            

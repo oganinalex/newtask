@@ -16,7 +16,8 @@ trans_add_car_base:
     
 trans_edit_car:
     pattern: /edit_car/{car_id}
-    defaults: {_controller: TransBaseBundle:Car:edit_car}
+    defaults: {_controller: TransBaseBundle:Car:edit_car }
+  
 
 trans_edit_car_base:
     pattern: /edit_car_base/{car_id}
@@ -31,8 +32,10 @@ trans_add_act:
     defaults: { _controller: TransBaseBundle:Trans:add_act}
     
 trans_edit_act:
-    pattern: /edit_act/{act_id}
-    defaults: { _controller: TransBaseBundle:Trans:edit_act}
+    pattern: /{_locale}/edit_act/{act_id}
+    defaults: { _controller: TransBaseBundle:Trans:edit_act, _locale: en}
+    requirements:
+        _locale: en|fr|ru
     
 trans_delete_act:
     pattern: /delete_act/{act_id}
